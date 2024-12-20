@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/@n8n/chat/dist/style.css" rel="stylesheet" />
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            width: 100%;
+            background: transparent;
+        }
+        #chat-container {
+            width: 100%;
+            height: 100%;
+        }
+        :root {
+            /* Personalización de colores y estilo */
+            --chat--color-primary: #2563eb;
+            --chat--color-secondary: #1d4ed8;
+            --chat--color-white: #ffffff;
+            --chat--color-light: #f8fafc;
+            --chat--window--width: 380px;
+            --chat--window--height: 500px;
+            --chat--message--font-size: 0.95rem;
+            --chat--header--background: #1e40af;
+            --chat--message--user--background: #2563eb;
+            --chat--message--bot--background: #f8fafc;
+            --chat--message--bot--color: #1e293b;
+            --chat--toggle--size: 56px;
+            --chat--border-radius: 0.75rem;
+            --chat--header--padding: 1rem;
+            --chat--message--padding: 0.75rem 1rem;
+        }
+        
+        /* Mejoras en la apariencia de los mensajes */
+        .chat-message {
+            margin: 8px 0;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        
+        /* Estilo para el botón flotante */
+        .chat-toggle {
+            border-radius: 50%;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+
+        /* Mejora en la ventana del chat */
+        .chat-window {
+            border-radius: 12px;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+    </style>
+</head>
+<body>
+    <div id="chat-container"></div>
+    
+    <script type="module">
+        import { createChat } from 'https://cdn.jsdelivr.net/npm/@n8n/chat/dist/chat.bundle.es.js';
+
+        createChat({
+            webhookUrl: 'http://localhost:5678/webhook/e29e3a1c-9b1d-422c-ad91-8052192a3c84/chat',
+            mode: 'window',
+            target: '#chat-container',
+            chatInputKey: 'chatInput',
+            chatSessionKey: 'sessionId',
+            showWelcomeScreen: true,
+            initialMessages: [
+                '👋 ¡Bienvenido a Guanaguana Enterprise!',
+                'Estoy aquí para ayudarte con cualquier consulta que tengas.'
+            ],
+            i18n: {
+                en: {
+                    title: 'Guanaguana Enterprise',
+                    subtitle: 'Asistente Virtual',
+                    inputPlaceholder: 'Escribe tu mensaje aquí...',
+                    getStarted: 'Iniciar chat',
+                    footer: '' // Esto minimiza el footer pero no puede eliminar completamente "Powered by n8n"
+                }
+            }
+        });
+    </script>
+</body>
+</html>
